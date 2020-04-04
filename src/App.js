@@ -5,11 +5,9 @@ import Authentication from './components/authentication';
 import {HashRouter,Route} from 'react-router-dom';
 import { Provider } from 'react-redux'
 import store from './stores/store'
-import HttpsRedirect from 'react-https-redirect'
 
 function App() {
   return (
-      <HttpsRedirect>
           <div className="App">
             <Provider store={store}>
               <HashRouter>
@@ -21,7 +19,6 @@ function App() {
               </HashRouter>
             </Provider>
           </div>
-      </HttpsRedirect>
   );
 }
 
