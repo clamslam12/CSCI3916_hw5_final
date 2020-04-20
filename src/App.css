@@ -112,6 +112,16 @@ h2 {
   width: 75%;
   height:60vh;
 }
+.rightNoScroll{
+  width: 75%;
+  height:40vh;
+}
 .comment {
   width:100%;
+}
+.center{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

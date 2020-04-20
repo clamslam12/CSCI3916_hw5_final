@@ -16,8 +16,8 @@ class Movie extends Component {
         let title = queryString.parse(this.props.location.search).title
         localStorage.setItem('title',title)
         const {dispatch} = this.props;
-        dispatch(retrieveMovie(localStorage.getItem('token'))).then(res=> {
 
+        dispatch(retrieveMovie(localStorage.getItem('token'))).then(res=> {
                 if(this.state.movie !== res.results) {
                     this.setState({movie: res.results, rating:res.rating})
                     console.log(this.state.movie)
@@ -25,7 +25,24 @@ class Movie extends Component {
             }
         )
     }
+    componentWillUnmount(){
 
+    }
+    updateReview(){
+
+        console.log("Update view herw")
+        let title = queryString.parse(this.props.location.search).title
+        localStorage.setItem('title',title)
+        const {dispatch} = this.props;
+
+        dispatch(retrieveMovie(localStorage.getItem('token'))).then(res=> {
+                if(this.state.movie !== res.results) {
+                    this.setState({movie: res.results, rating:res.rating})
+                    console.log(this.state.movie)
+                }
+            }
+        )
+    }
 
 
     render(){
@@ -44,21 +61,25 @@ class Movie extends Component {
 
                         </div>
                         {typeof (this.state.movie.reviews) === "undefined" ? <div>No reviews</div> :
-                            <div className="column right">
-                                {this.state.movie.reviews.map((item, i) =>
+                            <div>
+                                <div className="column right">
+                                    {this.state.movie.reviews.map((item, i) =>
 
-                                    <div key={i}>
-                                        <i style={{fontSize: 30}}>{item.review}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub
-                                        style={{fontSize: 30}}>{item.author_name}</sub>
-                                    </div>
-                                )
-                                }
+                                        <div key={i}>
+                                            <i style={{fontSize: 30}}>{item.review}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub
+                                            style={{fontSize: 30}}>{item.author_name}</sub>
+                                        </div>
+                                    )
+                                    }
+                                </div>
+                                <div className="column rightNoScroll">
+                                    <Comment updateReview={this.updateReview.bind(this)}/>
+                                </div>
+
+
                             </div>
-
                         }
-                        <div className="column left">
-                            <Comment/>
-                        </div>
+
                     </div>
                 )
                 }
