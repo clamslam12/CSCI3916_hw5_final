@@ -110,6 +110,8 @@ h2 {
 .right {
   overflow: scroll;
   width: 75%;
-  height:100vh;
+  height:60vh;
 }
-
+.comment {
+  width:100%;
+}

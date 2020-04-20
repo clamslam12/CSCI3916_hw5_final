@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-
 import {retrieveMovie} from "../actions/movielistAction";
 import {Glyphicon} from "react-bootstrap";
+import Comment from "../components/comment"
 
 class Movie extends Component {
     constructor(props) {
@@ -13,7 +13,6 @@ class Movie extends Component {
     }
 
     componentDidMount(){
-        // alert(location.query)
         let title = queryString.parse(this.props.location.search).title
         localStorage.setItem('title',title)
         const {dispatch} = this.props;
@@ -49,13 +48,17 @@ class Movie extends Component {
                                 {this.state.movie.reviews.map((item, i) =>
 
                                     <div key={i}>
-                                        <i style={{fontSize: 30}}>{item.review}</i><sub
+                                        <i style={{fontSize: 30}}>{item.review}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub
                                         style={{fontSize: 30}}>{item.author_name}</sub>
                                     </div>
                                 )
                                 }
                             </div>
+
                         }
+                        <div className="column left">
+                            <Comment/>
+                        </div>
                     </div>
                 )
                 }
