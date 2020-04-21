@@ -7,6 +7,7 @@ import {BrowserRouter as Router,Route } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import store from './stores/store'
 import Movie from "./components/movie";
+import searchMovie from "./components/searchMovie";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
                   <Route exact path="/" render={()=><div />}/>
                   <Route path="/signin" component={Authentication} />
                   <Route path="/movielist" component={MovieList} />
+                  <Route path="/searchMovie" component={searchMovie}/>
                   <Route path="/movie" component={Movie} />
                 </div>
               </Router>
